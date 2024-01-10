@@ -400,7 +400,7 @@ Services can request specific IPs. The legacy way of doing so is via ``.spec.loa
 which takes a single IP address. This method has been deprecated in k8s v1.24 but is supported
 until its future removal.
 
-The new way of requesting specific IPs is to use annotations, ``io.cilium/lb-ipam-ips`` in the case
+The new way of requesting specific IPs is to use annotations, ``lbipam.cilium.io/ips`` in the case
 of Cilium LB IPAM. This annotation takes a comma-separated list of IP addresses, allowing for
 multiple IPs to be requested at once.
 
@@ -420,7 +420,7 @@ for the network and broadcast addresses respectively.
       labels:
         color: blue
       annotations:
-        "io.cilium/lb-ipam-ips": "20.0.10.100,20.0.10.200"
+        "lbipam.cilium.io/ips": "20.0.10.100,20.0.10.200"
     spec:
       type: LoadBalancer
       ports:
@@ -435,7 +435,7 @@ for the network and broadcast addresses respectively.
 Sharing Keys
 ------------
 
-Services can share the same IP or set of IPs with other services. This is done by setting the ``io.cilium/lb-ipam-sharing-key`` annotation on the service.
+Services can share the same IP or set of IPs with other services. This is done by setting the ``lbipam.cilium.io/sharing-key`` annotation on the service.
 Services that have the same sharing key annotation will share the same IP or set of IPs. The sharing key is a string that can be any value.
 
 .. code-block:: yaml
@@ -448,7 +448,7 @@ Services that have the same sharing key annotation will share the same IP or set
     labels:
       color: blue
     annotations:
-      "io.cilium/lb-ipam-sharing-key": "1234"
+      "lbipam.cilium.io/sharing-key": "1234"
   spec:
     type: LoadBalancer
     ports:
@@ -462,7 +462,7 @@ Services that have the same sharing key annotation will share the same IP or set
     labels:
       color: red
     annotations:
-      "io.cilium/lb-ipam-sharing-key": "1234"
+      "lbipam.cilium.io/sharing-key": "1234"
   spec:
     type: LoadBalancer
     ports:
